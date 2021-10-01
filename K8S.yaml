@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-app
+  labels:
+    app: golang-app
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: golang-app
+  template:
+    metadata:
+      labels:
+        app: golang-app
+    spec:
+      containers:
+        - name: golang-app
+          image: mygolangdemo:1.15
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: golang-app-service
+spec:
+  selector:
+    app: golang-app
+  ports:
+    # Default port used by the image
+    - port: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: golang-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: "/homePage"
+            backend:
+              service:
+                name: golang-app-service
+                port:
+                  number: 8000
