@@ -60,7 +60,7 @@ PS C:\Workspace\golangdemo> docker build -t mygolangdemo:1.15 -f .\Dockerfile .
 => => naming to docker.io/library/mygolangdemo:1.15    
 
 
-#K8's file will be used apply the changes to deploy the mygolangdemo image with Tag as 1.15 to POD
+# K8's file will be used apply the changes to deploy the mygolangdemo image with Tag as 1.15 to POD
 
 kubectl apply -f C:\Workspace\golangdemo\K8S.yaml
 
