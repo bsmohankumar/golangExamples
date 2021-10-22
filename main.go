@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 func homePage(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "My Awesome Go App")
+	fmt.Fprintf(w, "My Awesome Go App1")
 }
 
 func setupRoutes() {
